@@ -2,7 +2,8 @@
 
 ## Creating a simple server
 
-```typescript
+```TSX
+// server.tsx
 const server = new Viskum();
 
 server.newPage("/", (req, res, config) => {
