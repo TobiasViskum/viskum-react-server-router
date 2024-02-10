@@ -18,4 +18,12 @@ server.newPage("/", (req, res, config) => {
     </html>
   );
 });
+
+server.listen(3000, (listenSocket) => {
+  if (listenSocket) {
+    console.log("Listening on port 3000");
+  } else {
+    console.log("Failed to listen on port 3000");
+  }
+});
 ```
