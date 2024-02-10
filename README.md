@@ -7,6 +7,7 @@
 const server = new Viskum();
 
 server.newPage("/", (req, res, config) => {
+
   res.html(
     <html>
       <head>
@@ -31,7 +32,9 @@ server.listen(3000, (listenSocket) => {
 ## Layouts, loading pages, error pages etc.
 
 ```TSX
+// server.tsx
 const mainRouteGroup = new RouteGroup((req, res, config) => {
+
   res.layout(({ children }) => (
     <html>
       <head>
@@ -52,7 +55,6 @@ const mainRouteGroup = new RouteGroup((req, res, config) => {
 const server = new Viskum();
 
 mainRouteGroup.newPage("/", (req, res, config) => {
-
 
   res.html(
     <div>
@@ -78,4 +80,39 @@ server.newPage("/", (req, res, config) => {
     </div>
   );
 });
+```
+
+## Meta data
+
+Metadata can be set with the config parameter on pages and/or route groups.
+
+```TSX
+config.meta.set({
+  // Options
+})
+```
+
+Her is a full list of the metadata options:
+
+```TS
+type InteractiveWidget = "resizes-visual" | "resizes-content" | "overlays-content";
+type CharSet = "ASCII" | "ANSI" | "ISO-8859-1" | "UTF-8";
+
+export type Meta = {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  charset?: CharSet;
+  viewport?: {
+    width?: number;
+    height?: number;
+    initialScale?: number;
+    minimumScale?: number;
+    maximumScale?: number;
+    userScalable?: boolean;
+    interactiveWidgets?: InteractiveWidget;
+  };
+  themeColor?: string;
+};
+
 ```
