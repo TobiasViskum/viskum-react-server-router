@@ -10,7 +10,7 @@ server.newPage("/", (req, res, config) => {
   res.html(
     <html>
       <head>
-        <title>React server router</title>
+        <title>React Server Router</title>
       </head>
       <body>
         <div>Hello from react server router</div>
@@ -35,15 +35,14 @@ const mainRouteGroup = new RouteGroup((req, res, config) => {
   res.layout(({ children }) => (
     <html>
       <head>
-        <title>My App</title>
+       <title>React Server Router</title>
       </head>
       <body>
         <div>
           <a href="/">Home</a>
           <a href="/about">About</a>
         </div>
-        <p>Url from layout: {req.url} </p>
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   ));
@@ -52,8 +51,8 @@ const mainRouteGroup = new RouteGroup((req, res, config) => {
 
 const server = new Viskum();
 
-server.newPage("/", (req, res, config) => {
-  config.useRouteGroup(routeGroup);
+mainRouteGroup.newPage("/", (req, res, config) => {
+
 
   res.html(
     <div>
@@ -63,4 +62,20 @@ server.newPage("/", (req, res, config) => {
 });
 
 server.listen(3000)
+```
+
+However if you want to apply a route group to a single page, this can also be done:
+
+```TSX
+server.newPage("/", (req, res, config) => {
+  /* This has to be before res.html */
+  config.useRouteGroup(mainRouteGroup);
+  /* Multiple route groups can be used and layouts will be nested in the same order route groups are used */
+
+  res.html(
+    <div>
+      <p>This was rendered inside a layout</p>
+    </div>
+  );
+});
 ```
