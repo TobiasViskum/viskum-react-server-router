@@ -62,6 +62,8 @@ const routeGroup = new RouteGroup((req, res, config) => {
   ));
 });
 
+server.use((req, res, next) => {});
+
 server.newPage("/", (req, res, config) => {
   res.redirect("/about");
 

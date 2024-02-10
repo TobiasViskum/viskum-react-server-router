@@ -42,7 +42,9 @@ class Viskum {
         if (renderingStrategy === "single request") {
           const htmlStr = route.renderToString();
 
-          res.end(htmlStr);
+          res.cork(() => {
+            res.writeHeader("Content-Type", "text/html").end(htmlStr);
+          });
         } else {
           res.end(`Rendering strategy not supported: ${renderingStrategy}`);
         }
