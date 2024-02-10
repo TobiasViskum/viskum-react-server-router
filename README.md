@@ -31,6 +31,14 @@ server.listen(3000, (listenSocket) => {
 
 ## Layouts, loading pages, error pages etc.
 
+Layouts: Persists state across navigations (unless nested inside a template)
+
+Templates: Remounts on every navigation and all its children
+
+Loading: Loading page until suspense boundaries are resolved
+
+Error: Error page if an error happens
+
 ```TSX
 // server.tsx
 const mainRouteGroup = new RouteGroup((req, res, config) => {
@@ -82,7 +90,7 @@ server.newPage("/", (req, res, config) => {
 });
 ```
 
-## Meta data
+## Metadata
 
 Metadata can be set with the config parameter on pages and/or route groups.
 
