@@ -33,7 +33,7 @@ server.listen(3000, (listenSocket) => {
 
 Layouts: Persists state across navigations (unless nested inside a template)
 
-Templates: Remounts on every navigation and all its children
+Templates: Remounts on every navigation with all its children
 
 Loading: Loading page until suspense boundaries are resolved
 
@@ -43,6 +43,15 @@ Error: Error page if an error happens
 // server.tsx
 const mainRouteGroup = new RouteGroup((req, res, config) => {
 
+  res.error(({ errorMsg }) => (
+    <div>{errorMsg}</div>
+  ))
+
+  res.loading(() => (
+    <div>Loading...</div>
+  ))
+
+  /* Templates have the same syntax except the method is called "tempalte" */
   res.layout(({ children }) => (
     <html>
       <head>
