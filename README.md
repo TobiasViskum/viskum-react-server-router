@@ -51,7 +51,8 @@ const mainRouteGroup = new RouteGroup((req, res, config) => {
     <div>Loading...</div>
   ))
 
-  /* Templates have the same syntax except the method is called "tempalte" */
+  /* Templates have the same syntax
+  except the method is called "template" */
   res.layout(({ children }) => (
     <html>
       <head>
@@ -89,7 +90,9 @@ However if you want to apply a route group to a single page, this can also be do
 server.newPage("/", (req, res, config) => {
   /* This has to be before res.html */
   config.useRouteGroup(mainRouteGroup);
-  /* Multiple route groups can be used and layouts will be nested in the same order route groups are used */
+  /* Multiple route groups can be used
+  and layouts will be nested in the same order
+  route groups are used */
 
   res.html(
     <div>
